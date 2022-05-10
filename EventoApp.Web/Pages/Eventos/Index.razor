@@ -1,6 +1,7 @@
 ﻿@page "/eventos"
 @page "/eventos/index"
-@inject HttpClient Http
+@*@inject HttpClient Http*@
+@inject IEventoService EventoService
 
 <PageTitle>Eventos</PageTitle>
 
@@ -14,7 +15,7 @@
 else
 {
     <MudGrid>
-        @foreach (var evento in eventos)
+        @foreach (var evento in eventos.Where(e => e.Situcao == "Ativo"))
         {
             <MudItem sm="12" md="6" lg="4">
                 <EventoCard Evento="@evento"></EventoCard>
@@ -25,11 +26,12 @@ else
 }
 
 @code {
-    private Evento[]? eventos;
+    private List<Evento>? eventos;
 
-     protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        eventos = await Http.GetFromJsonAsync<Evento[]>("Eventos");
+        //eventos = await Http.GetFromJsonAsync<Evento[]>("Eventos");
+        eventos = await EventoService.GetEventos();
     }
 
 }

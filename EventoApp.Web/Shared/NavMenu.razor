@@ -1,7 +1,10 @@
 ﻿<MudNavMenu>
     <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudNavLink Href="eventos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Event">Eventos</MudNavLink>
-    <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
-    <MudNavLink Href="fetchdata" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Fetch data</MudNavLink>
-    <MudNavLink Href="sobre" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Help">Sobre</MudNavLink>
+    <MudNavLink Href="eventos" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Event">Eventos</MudNavLink>
+    <MudNavLink Href="counter" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
+    <MudNavLink Href="fetchdata" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.List">Fetch data</MudNavLink>
+    <MudNavGroup Title="Administração" Icon="@Icons.Material.Filled.Category">
+        <MudNavLink Href="eventos/list" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.List">Eventos</MudNavLink>
+    </MudNavGroup>
+    <MudNavLink Href="sobre" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Help">Sobre</MudNavLink>
 </MudNavMenu>

@@ -1,0 +1,46 @@
+﻿@page "/eventos/list"
+@inject IEventoService EventoService
+
+<PageTitle>Eventos</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">Eventos</MudText>
+<MudText Class="mb-8">Página de administração dos eventos.</MudText>
+
+@if (eventos == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+    <MudTable Items="eventos" Hover="true" SortLabel="Sort By" Elevation="0">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel SortBy="new Func<Evento, object>(x=>x.Nome!)">Evento</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Evento, object>(x=>x.Inicio!)">Início</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Evento, object>(x=>x.Fim!)">Fim</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<Evento, object>(x=>x.Situcao!)">Situação</MudTableSortLabel></MudTh>
+            <MudTh>Ações</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Nome">@context.Nome</MudTd>
+            <MudTd DataLabel="Inicio">@context.Inicio!.Value.ToString("dd/MM/yyyy")</MudTd>
+            <MudTd DataLabel="Fim" Class="">@context.Fim!.Value.ToString("dd/MM/yyyy")</MudTd>
+            <MudTd DataLabel="Situacao" >@context.Situcao</MudTd>
+            <MudTd>
+                <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Primary" aria-label="edit"></MudIconButton>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Secondary" aria-label="delete"></MudIconButton>
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[] { 10, 20, 50, 100 }" />
+        </PagerContent>
+    </MudTable>
+}
+
+@code {
+    private List<Evento>? eventos;
+         
+    protected override async Task OnInitializedAsync()
+    {
+        eventos = await EventoService.GetEventos();
+    }
+}
